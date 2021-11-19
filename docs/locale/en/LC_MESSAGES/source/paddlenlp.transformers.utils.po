@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PaddleNLP \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-07 11:40+0800\n"
+"POT-Creation-Date: 2021-11-18 17:30+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../../source/paddlenlp.transformers.utils.rst:2
+#: ../source/paddlenlp.transformers.utils.rst:2
 msgid "utils"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 
 #: of paddlenlp.transformers.utils.InitTrackerMeta:1
-msgid "基类：:class:`pybind11_builtins.pybind11_type`"
+msgid "基类：:class:`type`"
 msgstr ""
 
 #: of paddlenlp.transformers.utils.InitTrackerMeta:1
@@ -68,4 +68,7 @@ msgstr ""
 #: of paddlenlp.transformers.utils.InitTrackerMeta.init_and_track_conf
 msgid "返回类型"
 msgstr ""
+
+#~ msgid "基类：:class:`pybind11_builtins.pybind11_type`"
+#~ msgstr ""
 

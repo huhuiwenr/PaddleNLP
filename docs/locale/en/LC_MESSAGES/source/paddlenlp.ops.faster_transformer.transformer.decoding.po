@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, PaddleNLP
+# This file is distributed under the same license as the PaddleNLP package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PaddleNLP \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-18 17:30+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../source/paddlenlp.ops.faster_transformer.transformer.decoding.rst:2
+msgid "decoding"
+msgstr ""
+
+#: of
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferBartDecoding.forward:1
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferGptDecoding.forward:1
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferTransformerDecoding.forward:1
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferUnifiedDecoding.forward:1
+msgid ""
+"Defines the computation performed at every call. Should be overridden by "
+"all subclasses."
+msgstr ""
+
+#: of
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferBartDecoding.forward
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferGptDecoding.forward
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferTransformerDecoding.forward
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferUnifiedDecoding.forward
+msgid "参数"
+msgstr ""
+
+#: of
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferBartDecoding.forward:4
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferGptDecoding.forward:4
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferTransformerDecoding.forward:4
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferUnifiedDecoding.forward:4
+msgid "unpacked tuple arguments"
+msgstr ""
+
+#: of
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferBartDecoding.forward:6
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferGptDecoding.forward:6
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferTransformerDecoding.forward:6
+#: paddlenlp.ops.faster_transformer.transformer.decoding.InferUnifiedDecoding.forward:6
+msgid "unpacked dict arguments"
+msgstr ""
+
