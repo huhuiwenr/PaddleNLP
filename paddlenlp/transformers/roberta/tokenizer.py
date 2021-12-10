@@ -73,6 +73,7 @@ class RobertaTokenizer(PretrainedTokenizer):
     # resource_files_names = {"vocab_file": "vocab.txt"}  # for save_pretrained
     resource_files_names = {
         "vocab_file": "vocab.txt",
+        "json_vocab_file": "vocab.json",
         "merges_file": "merges.txt"
     }
     pretrained_resource_files_map = {
@@ -91,6 +92,19 @@ class RobertaTokenizer(PretrainedTokenizer):
             "https://bj.bcebos.com/paddlenlp/models/transformers/community/nosaydomore/uer_roberta_base_finetuned_cluener2020_chinese/vocab.txt",
             "roberta-base-chn-extractive-qa":
             "https://bj.bcebos.com/paddlenlp/models/transformers/community/nosaydomore/uer_roberta_base_chinese_extractive_qa/vocab.txt",
+            "roberta-en-base": None,
+            "roberta-en-large": None,
+            "roberta-base-squad2": None,
+            "tiny-distilroberta-base": None
+        },
+        "json_vocab_file": {
+            "roberta-wwm-ext": None,
+            "roberta-wwm-ext-large": None,
+            "rbt3": None,
+            "rbtl3": None,
+            "roberta-base-ft-chinanews-chn": None,
+            "roberta-base-ft-cluener2020-chn": None,
+            "roberta-base-chn-extractive-qa": None,
             "roberta-en-base":
             "https://bj.bcebos.com/paddlenlp/models/transformers/community/nosaydomore/roberta_en_base/vocab.json",
             "roberta-en-large":
@@ -147,8 +161,9 @@ class RobertaTokenizer(PretrainedTokenizer):
     }
 
     def __init__(self,
-                 vocab_file,
-                 merges_file,
+                 vocab_file=None,
+                 json_vocab_file=None,
+                 merges_file=None,
                  do_lower_case=True,
                  unk_token="[UNK]",
                  sep_token="[SEP]",
@@ -158,8 +173,34 @@ class RobertaTokenizer(PretrainedTokenizer):
 
         self.do_lower_case = do_lower_case
         self.vocab_file = vocab_file
+        self.vocab_json = json_vocab_file
         self.merges_file = merges_file
-
+        if vocab_file is not None:
+            if merges_file is not None:
+                self.tokenizer = RobertaBPETokenizer(
+                    vocab_file=vocab_file, merges_file=merges_file)
+            else:
+                self.tokenizer = RobertaChineseTokenizer(
+                    vocab_file=vocab_file,
+                    do_lower_case=True, )
+                self.basic_tokenizer = self.tokenizer.basic_tokenizer
+                self.wordpiece_tokenizer = self.tokenizer.wordpiece_tokenizer
+        elif json_vocab_file is not None:
+            if merges_file is not None:
+                self.tokenizer = RobertaBPETokenizer(
+                    vocab_file=json_vocab_file, merges_file=merges_file)
+            else:
+                self.tokenizer = RobertaChineseTokenizer(
+                    vocab_file=json_vocab_file,
+                    do_lower_case=True, )
+                self.basic_tokenizer = self.tokenizer.basic_tokenizer
+                self.wordpiece_tokenizer = self.tokenizer.wordpiece_tokenizer
+        else:
+            raise ValueError(
+                "You should specify both of 'vocal_file'"
+                "and 'merges_file' to construct an roberta BPE tokenizer."
+                "Specify 'vocal_file' for Chinese tokenizer")
+        '''
         if vocab_file is not None and merges_file is not None:
             self.tokenizer = RobertaBPETokenizer(
                 vocab_file=vocab_file, merges_file=merges_file)
@@ -173,7 +214,7 @@ class RobertaTokenizer(PretrainedTokenizer):
             raise ValueError(
                 "You should specify both of 'vocal_file'"
                 "and 'merges_file' to construct an roberta BPE tokenizer."
-                "Specify 'vocal_file' for Chinese tokenizer")
+                "Specify 'vocal_file' for Chinese tokenizer")'''
 
     @property
     def vocab_size(self):
@@ -763,12 +804,12 @@ class RobertaBPETokenizer(GPTTokenizer):
 
     """
     resource_files_names = {
-        "vocab_file": "vocab.json",
+        "json_vocab_file": "vocab.json",
         "merges_file": "merges.txt"
     }  # for save_pretrained
 
     pretrained_resource_files_map = {
-        "vocab_file": {
+        "json_vocab_file": {
             "roberta-en-base":
             "https://bj.bcebos.com/paddlenlp/models/transformers/community/nosaydomore/roberta_en_base/vocab.json",
             "roberta-en-large":

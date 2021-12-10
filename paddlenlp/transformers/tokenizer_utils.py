@@ -527,29 +527,40 @@ class PretrainedTokenizer(object):
 
         default_root = os.path.join(MODEL_HOME, pretrained_model_name_or_path)
         resolved_vocab_files = {}
+        find_path = False
         for file_id, file_path in vocab_files.items():
+            print(file_id, file_path)
             if file_path is None or os.path.isfile(file_path):
                 resolved_vocab_files[file_id] = file_path
+                find_path = True
+                print('find_path:', find_path)
                 continue
             path = os.path.join(default_root, file_path.split('/')[-1])
             if os.path.exists(path):
                 logger.info("Already cached %s" % path)
                 resolved_vocab_files[file_id] = path
+                find_path = True
+                print('find_path:', find_path)
             else:
                 logger.info("Downloading %s and saved to %s" %
                             (file_path, default_root))
                 try:
                     resolved_vocab_files[file_id] = get_path_from_url(
                         file_path, default_root)
+                    find_path = True
+                    print('find_path:', find_path)
                 except RuntimeError as err:
-                    logger.error(err)
-                    raise RuntimeError(
-                        f"Can't load tokenizer for '{pretrained_model_name_or_path}'.\n"
-                        f"Please make sure that '{pretrained_model_name_or_path}' is:\n"
-                        "- a correct model-identifier of built-in pretrained models,\n"
-                        "- or a correct model-identifier of community-contributed pretrained models,\n"
-                        "- or the correct path to a directory containing relevant tokenizer files.\n"
+                    print(
+                        f"Can't load tokenizer for {pretrained_model_name_or_path}"
                     )
+        if find_path == False:
+            raise RuntimeError(
+                f"Can't load tokenizer for '{pretrained_model_name_or_path}'.\n"
+                f"Please make sure that '{pretrained_model_name_or_path}' is:\n"
+                "- a correct model-identifier of built-in pretrained models,\n"
+                "- or a correct model-identifier of community-contributed pretrained models,\n"
+                "- or the correct path to a directory containing relevant tokenizer files.\n"
+            )
 
         # Prepare tokenizer initialization kwargs
         # Did we saved some inputs and kwargs to reload ?
